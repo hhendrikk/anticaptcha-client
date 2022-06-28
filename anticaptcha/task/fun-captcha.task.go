@@ -33,6 +33,9 @@ type FunCaptchaTask struct {
 	UserAgent string `json:"userAgent"`
 }
 
+// This type of task solves arkoselabs.com puzzles in our workers' browsers.
+// Your app submits the website address and public key and receives a token after task completion.
+// Use this token to submit the form with the Arkose Labs captcha.
 func NewFunCaptchaTask(websiteURL string, WebsitePublicKey string, proxyType string, proxyAddress string, proxyPort int, userAgent string) *FunCaptchaTask {
 	return &FunCaptchaTask{
 		Type:             "FunCaptchaTask",

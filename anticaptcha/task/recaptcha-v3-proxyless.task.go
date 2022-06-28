@@ -30,6 +30,11 @@ type RecaptchaV3TaskProxyless struct {
 	ApiDomain string `json:"apiDomain"`
 }
 
+// As V3 Enterprise is virtually the same as V3 non-Enterprise, we decided to roll out it’s support within the usual V3 tasks.
+// Differences between V3 Enterprise and V3 non-Enterprise:
+// widget code is loaded via enterprise.js (vs api.js)
+// user score retrieval is made with grecaptcha.enterprise.execute call (vs grecaptcha.execute)
+// Thus to mark your Enterprise V3 task, you simply need to add a flag "isEnterprise": true to your non-Enterprise V3 payload
 func NewRecaptchaV3TaskProxyless(websiteURL string, websiteKey string, minScore float64, pageAction string) *RecaptchaV3TaskProxyless {
 	return &RecaptchaV3TaskProxyless{
 		Type:       "RecaptchaV3TaskProxyless",

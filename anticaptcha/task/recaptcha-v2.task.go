@@ -35,6 +35,14 @@ type RecaptchaV2Task struct {
 	IsInvisible bool `json:"isInvisible"`
 }
 
+// Use this type of task to solve Recaptchas in Google services.
+// In all other cases use RecaptchaV2TaskProxyless to solve Recaptcha in proxy-off mode.
+// Google's API does not disclose the solver's IP address to website owners.
+// Our system is build so that a worker's browsers don't have access to your proxy servers.
+// This data is stored on our server and is removed as soon as the task is completed.
+// Workers' computers interact only with our servers. Your proxy is accessed only from one IP address.
+// Before executing this type of task, our proxy checker might test your proxy for compatibility by making a series of test requests. If these test requests fail, your task will be marked with ERROR_PROXY_CONNECT_TIMEOUT or a similar error and will be canceled.
+// During the solution process, your proxy also might fail and our API will produce other proxy errors.
 func NewRecaptchaV2Task(websiteURL string, websiteKey string, proxyType string, proxyAddress string, proxyPort int, userAgent string) *RecaptchaV2Task {
 	return &RecaptchaV2Task{
 		Type:         "RecaptchaV2Task",

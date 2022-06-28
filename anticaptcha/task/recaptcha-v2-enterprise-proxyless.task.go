@@ -17,6 +17,8 @@ type RecaptchaV2EnterpriseProxylessTask struct {
 	ApiDomain string `json:"apiDomain"`
 }
 
+// This type of task is for solving Google Recaptcha Enterprise V2 from the worker's IP address.
+// It is mostly similar to RecaptchaV2TaskProxyless, except tasks are solved using an Enterprise API and assigned to workers with the best Recaptcha V3 score.
 func NewRecaptchaV2EnterpriseProxylessTask(websiteURL string, websiteKey string) *RecaptchaV2EnterpriseProxylessTask {
 	return &RecaptchaV2EnterpriseProxylessTask{
 		Type:       "RecaptchaV2EnterpriseTaskProxyless",

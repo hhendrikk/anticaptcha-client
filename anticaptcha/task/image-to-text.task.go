@@ -6,9 +6,6 @@ import (
 	"net/http"
 )
 
-// Post an image body and receive text from it. Text can only contain digits, letters, special characters and a space.
-// GIF animations are supported, up to 500kb.
-// Custom captchas like "find a cat in this series of images and enter its number" are not supported.
 type ImageToTextTask struct {
 	// Required
 	// Defines the type of task.
@@ -50,7 +47,11 @@ type ImageToTextTask struct {
 	WebsiteURL string `json:"websiteURL"`
 }
 
-// body File body encoded in base64. Make sure to send it without line breaks. Do not include 'data:image/png,' or similar tags, only clean base64!
+// Post an image body and receive text from it. Text can only contain digits, letters, special characters and a space.
+// GIF animations are supported, up to 500kb.
+// Custom captchas like "find a cat in this series of images and enter its number" are not supported.
+// body File body encoded in base64.
+// Make sure to send it without line breaks. Do not include 'data:image/png,' or similar tags, only clean base64!
 func NewImageToTextTask(body string) *ImageToTextTask {
 	return &ImageToTextTask{
 		Type: "ImageToTextTask",
@@ -58,6 +59,9 @@ func NewImageToTextTask(body string) *ImageToTextTask {
 	}
 }
 
+// Post an image body and receive text from it. Text can only contain digits, letters, special characters and a space.
+// GIF animations are supported, up to 500kb.
+// Custom captchas like "find a cat in this series of images and enter its number" are not supported.
 func NewImageToTextTaskFromUrl(url string) (*ImageToTextTask, error) {
 	client := http.Client{}
 	resp, err := client.Get(url)

@@ -16,6 +16,11 @@ type RecaptchaV2ProxylessTask struct {
 	IsInvisible bool `json:"isInvisible"`
 }
 
+// This type of task solves Google Recaptcha V2 without proxy.
+// The task is executed using our own proxy servers and/or workers' IP addresses.
+// At the moment, Recaptcha does not have protection from situations where a puzzle is solved on one IP address and the form with the g-response is submitted from another.
+// Google's API does not provide the IP address of the person who solved their Recaptcha.
+// If this changes, you may always use our standard type of task for that - RecaptchaV2Task.
 func NewRecaptchaV2ProxylessTask(websiteURL string, websiteKey string) *RecaptchaV2ProxylessTask {
 	return &RecaptchaV2ProxylessTask{
 		Type:       "RecaptchaV2TaskProxyless",

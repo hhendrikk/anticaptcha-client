@@ -36,6 +36,8 @@ type RecaptchaV2EnterpriseTask struct {
 	Cookies string `json:"cookies"`
 }
 
+// This type of task is for solving Google Recaptcha Enterprise V2 using the provided proxy.
+// It is mostly similar to RecaptchaV2Task, except tasks are solved using an Enterprise API and assigned to workers with the best Recaptcha V3 score.
 func NewRecaptchaV2EnterpriseTask(websiteURL string, websiteKey string, proxyType string, proxyAddress string, proxyPort int, userAgent string) *RecaptchaV2EnterpriseTask {
 	return &RecaptchaV2EnterpriseTask{
 		Type:         "RecaptchaV2EnterpriseTask",
