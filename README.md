@@ -13,7 +13,31 @@ Golang library to usage anti-captcha.com.
 ```bash
   go get -u github.com/hhendrikk/anticaptcha-client@v1.0.1
 ```
-    
+
+## Get balance
+```golang
+package main
+
+import (
+	"fmt"
+	"log"
+
+	"github.com/hhendrikk/anticaptcha-client/anticaptcha"
+)
+
+func main() {
+	client := anticaptcha.NewClient("YOUR_API_KEY")
+	result, err := client.GetBalance()
+
+	if err != nil {
+		log.Fatalln(err.Error())
+	}
+
+	fmt.Printf("Balance: %0.2f\n", result.Balance)
+
+}
+```
+
 ## ImageToText
 
 - From Url
@@ -175,4 +199,9 @@ func main() {
 - GeeTestTaskProxyless
 - HCaptchaTask
 - HCaptchaTaskProxyless
+- ReportIncorrectImageCaptcha
+- ReportIncorrectRecaptcha
+- ReportCorrectRecaptcha
+- ReportIncorrectHcaptcha
+
 
