@@ -1,4 +1,4 @@
-package service
+package anticaptcha
 
 import (
 	"bytes"
@@ -9,7 +9,6 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/hhendrikk/anticaptcha-client/anticaptcha"
 	"github.com/hhendrikk/anticaptcha-client/anticaptcha/model"
 )
 
@@ -89,7 +88,7 @@ func (c *Client) GetBalance() (*model.Balance, error) {
 
 		return &balance, nil
 	default:
-		return nil, anticaptcha.ErrorMapping[response["errorCode"].(string)]
+		return nil, ErrorMapping[response["errorCode"].(string)]
 	}
 }
 
@@ -151,7 +150,7 @@ func (c *Client) Report(taskId float64, reportTaskType model.ReportTaskType) (*m
 
 		return &report, nil
 	default:
-		return nil, anticaptcha.ErrorMapping[response["errorCode"].(string)]
+		return nil, ErrorMapping[response["errorCode"].(string)]
 	}
 }
 
@@ -199,7 +198,7 @@ func (c *Client) GetResult(task Tasker) (*model.TaskResultResponse, error) {
 
 			time.Sleep(2 * time.Second)
 		default:
-			return nil, anticaptcha.ErrorMapping[response["errorCode"].(string)]
+			return nil, ErrorMapping[response["errorCode"].(string)]
 		}
 	}
 }
@@ -239,7 +238,7 @@ func (c *Client) createTask(task Tasker) (*model.TaskResponse, error) {
 
 		return &taskResponse, nil
 	default:
-		return nil, anticaptcha.ErrorMapping[response["errorCode"].(string)]
+		return nil, ErrorMapping[response["errorCode"].(string)]
 	}
 }
 

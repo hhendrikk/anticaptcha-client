@@ -4,12 +4,12 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/hhendrikk/anticaptcha-client/anticaptcha/service"
+	"github.com/hhendrikk/anticaptcha-client/anticaptcha"
 	"github.com/hhendrikk/anticaptcha-client/anticaptcha/task"
 )
 
 func main() {
-	client := service.NewClient("")
+	client := anticaptcha.NewClient("")
 	task := task.NewRecaptchaV2ProxylessTask("https://www.google.com/recaptcha/api2/demo", "6Le-wvkSAAAAAPBMRTvw0Q4Muexq9bi0DJwx_mJ-")
 
 	res, err := client.GetResult(task)
