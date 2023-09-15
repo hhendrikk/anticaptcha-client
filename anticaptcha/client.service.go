@@ -23,6 +23,7 @@ type Client struct {
 	CallbackUrl string
 	Verbose     bool
 	client      *http.Client
+	baseAddress string
 }
 
 type Tasker interface {
@@ -31,6 +32,7 @@ type Tasker interface {
 func NewClient(key string) *Client {
 	return &Client{
 		client:      &http.Client{},
+		baseAddress: BaseAddress,
 		Key:         key,
 		SoftId:      0,
 		Language:    "en",
@@ -55,10 +57,14 @@ func (c *Client) SetCallbackUrl(value string) {
 	c.CallbackUrl = value
 }
 
+func (c *Client) SetBaseAddress(value string) {
+	c.baseAddress = value
+}
+
 // Retrieve an account balance
 // Please don't call this method more than once every 30 seconds, and use a memory/disk cached value instead.
 func (c *Client) GetBalance() (*model.Balance, error) {
-	endpoint := fmt.Sprintf("%s/getBalance", BaseAddress)
+	endpoint := fmt.Sprintf("%s/getBalance", c.baseAddress)
 
 	data := map[string]string{
 		"clientKey": c.Key,
@@ -95,7 +101,7 @@ func (c *Client) GetBalance() (*model.Balance, error) {
 // Obtain queue load statistics
 // This method makes it possible to define a suitable time for uploading a new task. Output is cached for 10 seconds.
 func (c *Client) GetQueueStats(queueId model.QueueId) (*model.QueueStats, error) {
-	endpoint := fmt.Sprintf("%s/getQueueStats", BaseAddress)
+	endpoint := fmt.Sprintf("%s/getQueueStats", c.baseAddress)
 
 	data := map[string]interface{}{
 		"clientKey": c.Key,
@@ -119,7 +125,7 @@ func (c *Client) GetQueueStats(queueId model.QueueId) (*model.QueueStats, error)
 }
 
 func (c *Client) Report(taskId float64, reportTaskType model.ReportTaskType) (*model.ReportResponse, error) {
-	endpoint := fmt.Sprintf("%s/%s", BaseAddress, reportTaskType)
+	endpoint := fmt.Sprintf("%s/%s", c.baseAddress, reportTaskType)
 
 	data := map[string]interface{}{
 		"clientKey": c.Key,
@@ -156,7 +162,7 @@ func (c *Client) Report(taskId float64, reportTaskType model.ReportTaskType) (*m
 
 // Pull a captcha task status
 func (c *Client) GetResult(task Tasker) (*model.TaskResultResponse, error) {
-	endpoint := fmt.Sprintf("%s/getTaskResult", BaseAddress)
+	endpoint := fmt.Sprintf("%s/getTaskResult", c.baseAddress)
 
 	res, err := c.createTask(task)
 
@@ -204,7 +210,7 @@ func (c *Client) GetResult(task Tasker) (*model.TaskResultResponse, error) {
 }
 
 func (c *Client) createTask(task Tasker) (*model.TaskResponse, error) {
-	endpoint := fmt.Sprintf("%s/createTask", BaseAddress)
+	endpoint := fmt.Sprintf("%s/createTask", c.baseAddress)
 
 	data := model.TaskRequest{
 		ClientKey:    c.Key,
