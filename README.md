@@ -11,7 +11,7 @@ Golang library to usage anti-captcha.com.
 ## Installation
 
 ```bash
-  go get -u github.com/hhendrikk/anticaptcha-client@v1.0.4
+  go get -u github.com/hhendrikk/anticaptcha-client@v1.0.5
 ```
 
 ## Get balance

@@ -31,7 +31,7 @@ type HCaptchaTask struct {
 // We tried to create the same thing in our API, so task properties are absolutely the same as in RecaptchaV2Task except for the "type" property.
 // IMPORTANT: hCaptcha seems to have a limit on solved tasks from one IP: about 3 items per 12 hours.
 // Take this into account when you build the solving process through your proxy.
-func NewHCaptchaTask(websiteURL string, websiteKey string, proxyType string, proxyAddress string, proxyPort int, userAgent string) *HCaptchaTask {
+func NewHCaptchaTask(websiteURL string, websiteKey string, proxyType string, proxyAddress string, proxyPort int) *HCaptchaTask {
 	return &HCaptchaTask{
 		Type:         "HCaptchaTask",
 		WebsiteURL:   websiteURL,

@@ -24,7 +24,7 @@ type HCaptchaProxylessTask struct {
 
 // hCaptcha devs call their captcha "a drop-in replacement for Recaptcha".
 // We tried to create the same thing in our API, so task properties are absolutely the same as in RecaptchaV2TaskProxyless except for the "type" property.
-func NewHCaptchaProxylessTask(websiteURL string, websiteKey string, userAgent string) *HCaptchaProxylessTask {
+func NewHCaptchaProxylessTask(websiteURL string, websiteKey string) *HCaptchaProxylessTask {
 	return &HCaptchaProxylessTask{
 		Type:       "HCaptchaTaskProxyless",
 		WebsiteURL: websiteURL,
