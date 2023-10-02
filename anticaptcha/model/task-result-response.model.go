@@ -40,6 +40,7 @@ type TaskResultSolutionResponse struct {
 
 type TaskResultResponse struct {
 	ErrorId    int                        `json:"errorId"`
+	TaskId     float64                    `json:"taskId"`
 	Status     string                     `json:"status"`
 	Solution   TaskResultSolutionResponse `json:"solution"`
 	Cost       string                     `json:"cost"`

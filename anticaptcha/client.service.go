@@ -192,6 +192,7 @@ func (c *Client) GetResult(task Tasker) (*model.TaskResultResponse, error) {
 		switch response["status"].(type) {
 		case string:
 			var taskResult model.TaskResultResponse
+			taskResult.TaskId = res.TaskId
 			err = json.Unmarshal(r, &taskResult)
 
 			if err != nil {
