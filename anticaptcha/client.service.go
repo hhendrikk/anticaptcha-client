@@ -146,7 +146,7 @@ func (c *Client) Report(taskId float64, reportTaskType model.ReportTaskType) (*m
 	}
 
 	switch response["status"].(type) {
-	case float64:
+	case string:
 		var report model.ReportResponse
 		err = json.Unmarshal(r, &report)
 
