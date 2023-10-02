@@ -7,8 +7,14 @@ type TaskResultSolutionResponse struct {
 	// ImageToTextTask
 	Url string `json:"url"`
 
+	// UserAgent
+	UserAgent string `json:"userAgent"`
+
 	// Recaptcha
 	GRecaptchaResponse string `json:"gRecaptchaResponse"`
+
+	// Recaptcha RespKey
+	RecaptchaRespKey string `json:"respKey"`
 
 	// Funcaptcha
 	Token string `json:"token"`

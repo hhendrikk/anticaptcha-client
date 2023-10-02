@@ -7,9 +7,6 @@ type HCaptchaProxylessTask struct {
 	WebsiteURL string `json:"websiteURL"`
 	// hCaptcha sitekey
 	WebsiteKey string `json:"websiteKey"`
-	// Provide the User Agent you are using to navigate the website.
-	// Our workers will use same value during Hcaptcha solving process.
-	UserAgent string `json:"userAgent"`
 	// Specify whether or not Hcaptcha is invisible.
 	// This will render an appropriate widget for our workers.
 	IsInvisible bool `json:"isInvisible"`
@@ -32,6 +29,5 @@ func NewHCaptchaProxylessTask(websiteURL string, websiteKey string, userAgent st
 		Type:       "HCaptchaTaskProxyless",
 		WebsiteURL: websiteURL,
 		WebsiteKey: websiteKey,
-		UserAgent:  userAgent,
 	}
 }

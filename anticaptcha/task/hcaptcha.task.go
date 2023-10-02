@@ -20,9 +20,6 @@ type HCaptchaTask struct {
 	ProxyLogin string `json:"proxyLogin"`
 	// Proxy password
 	ProxyPassword string `json:"proxyPassword"`
-	// Provide the User Agent you are using to navigate the website.
-	// Our workers will use same value during Hcaptcha solving process.
-	UserAgent string `json:"userAgent"`
 	// Specify whether or not Hcaptcha is invisible.
 	// This will render an appropriate widget for our workers.
 	IsInvisible bool `json:"isInvisible"`
@@ -42,6 +39,5 @@ func NewHCaptchaTask(websiteURL string, websiteKey string, proxyType string, pro
 		ProxyType:    proxyType,
 		ProxyAddress: proxyAddress,
 		ProxyPort:    proxyPort,
-		UserAgent:    userAgent,
 	}
 }
